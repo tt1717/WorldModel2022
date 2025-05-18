@@ -3,250 +3,216 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RSSMの実世界画像予測への応用</title>
+    <title>世界モデル2022</title>
 
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- ─── Styles ──────────────────────────────────────────── -->
     <style>
-      :root {
-        --accent: #0b57d0;
-        --dark: #1a1a1a;
-        --light: #f7f7f7;
-      }
-
-      /* Base -------------------------------------------------- */
-      body {
-        margin: 0;
-        font-family: "M PLUS 1p", "M PLUS 1P", "Noto Sans JP", "Segoe UI",
-          "Helvetica Neue", Arial, sans-serif;
-        font-size: 1.15rem;
-        line-height: 2;
-        color: var(--dark);
-      }
-
-      /* Header ------------------------------------------------ */
-      header {
-        display: flex;
-        align-items: center;
-        padding: 8px 24px;
-        background: #fff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-      header img {
-        height: 40px;
-        margin-right: 8px;
-      }
-      header h1 {
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 600;
-      }
-
-      /* Hero -------------------------------------------------- */
-      .hero {
-        max-width: 1200px;
-        margin: 80px auto 48px;
-        text-align: center;
-        padding: 0 16px;
-      }
-      .hero h2 {
-        margin: 0 0 24px;
-        font-size: 3rem;
-        font-weight: 600;
-        color: var(--accent);
-        line-height: 1.3;
-      }
-      .hero p.authors {
-        margin: 0 0 32px;
-        font-size: 1rem;
-        white-space: pre-line;
-      }
-
-      /* Main -------------------------------------------------- */
-      main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 16px 80px;
-      }
-      section {
-        margin: 64px 0;
-      }
-      section h2 {
-        margin: 0 0 24px;
-        font-size: 2rem;
-        color: var(--accent);
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 4px;
-      }
-      section h3 {
-        margin: 32px 0 16px;
-        font-size: 1.2rem;
-        color: var(--dark);
-      }
-      ul, ol {
-        padding-left: 20px;
-      }
-
-      /* Placeholders ----------------------------------------- */
-      .placeholder {
-        width: 100%;
-        height: 300px;
-        margin: 24px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        color: #777;
-        background: #e1e1e1;
-        border: 2px dashed #bbb;
-      }
-
-      /* Footer ------------------------------------------------ */
-      footer {
-        margin-top: 64px;
-        padding: 24px 0;
-        text-align: center;
-        font-size: 0.8rem;
-        color: #666;
-        border-top: 1px solid #eee;
-      }
+      :root { --accent: #0b57d0; --dark: #1a1a1a; --light: #f7f7f7; }
+      body { margin: 0; font-family: "M PLUS 1p", sans-serif; font-size: 1.15rem; line-height: 2; color: var(--dark); }
+      header { display: flex; align-items: center; padding: 8px 24px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+      header img { height: 40px; margin-right: 8px; }
+      header h1 { margin: 0; font-size: 1rem; font-weight: 600; }
+      .hero { max-width: 1200px; margin: 80px auto 48px; text-align: center; padding: 0 16px; }
+      .hero h2 { margin: 0 0 24px; font-size: 3rem; font-weight: 600; color: var(--accent); line-height: 1.3; }
+      .hero p.authors { margin: 0; font-size: 1rem; white-space: pre-line; }
+      .btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+      .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: opacity 0.15s; }
+      .btn:hover { opacity: 0.85; }
+      main { max-width: 1200px; margin: 0 auto; padding: 0 16px 80px; }
+      section { margin: 64px 0; }
+      section h2 { margin: 0 0 24px; font-size: 2rem; color: var(--accent); border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+      section h3 { margin: 32px 0 16px; font-size: 1.2rem; color: var(--dark); }
+      .section-flex { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px; }
+      .section-img { flex: 1 1 320px; min-width: 260px; text-align: center; }
+      .section-img img { max-width: 100%; height: auto; }
+      .section-text { flex: 1 1 320px; min-width: 260px; }
+      .gifs-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
+      .gifs-row .gif-col { text-align: center; }
+      .gifs-row img { width: 180px; max-width: 100%; }
+      footer { margin-top: 64px; padding: 24px 0; text-align: center; font-size: 0.8rem; color: #666; border-top: 1px solid #eee; }
+      @media (max-width: 600px) { .hero h2 { font-size: 1.8rem; } header h1 { font-size: 0.9rem; } }
     </style>
   </head>
-
   <body>
     <header>
       <img src="images/icon.jpeg" alt="logo" />
-      <h1>世界モデル2022</h1>
+      <h1>RSSMの実世界画像予測への応用</h1>
     </header>
-
     <div class="hero">
       <h2>RSSMの実世界画像予測への応用</h2>
       <p class="authors">
-        楠井俊朗 *1, 大谷真也 *2, 高野剛志 *3, 福田健人 *4, 本田純也 *5
-        
-        *1東京大学, *2神戸大学, *3千葉大学大学院融合理工学府,
+        楠井俊朗 *1, 大谷真也 *2, 高野剛志 *3, 福田健人 *4, 本田純也 *5<br>
+        *1東京大学, *2神戸大学, *3千葉大学,<br>
         *4放送大学, *5熊本高等専門学校
       </p>
+      <div class="btn-group">
+        <a href="materials/paper.pdf" class="btn" target="_blank">Paper</a>
+        <a href="materials/supplement.pdf" class="btn" target="_blank">Supplement</a>
+        <a href="materials/slide.pdf" class="btn" target="_blank">Slide</a>
+        <a href="materials/poster.pdf" class="btn" target="_blank">Poster</a>
+        <button id="langToggle" class="btn">English</button>
+      </div>
     </div>
-
     <main>
-      <!-- Abstract -->
       <section id="abstract">
         <h2>概要</h2>
-        <p>
-          従来のRSSM研究の多くは，シミュレータ上の系列画像を学習データとして用いてきた．実世界のビデオに基づくトレーニングの例としては，DayDreamerのXArmタスクなどがあるが，これらは固定された対象物を想定している．本研究では，周期的な振る舞いをする実世界の物体に対して，周期の長さを変化させた場合のRSSMに基づくモデルの性能を評価する．タスクは，垂直方向に動く単純なアームを使用して，周期的に回転する円盤上で口を開けたおもちゃの魚を釣り上げる方法を学ぶことである．このモデルは，RSSMを用いてカメラで撮影された魚の位置を予測し，魚を捕らえた人に報酬を与えるように設計されている．
-        </p>
+        <p>従来のRSSM研究の多くは，シミュレータ上の系列画像を学習データとして用いてきた．実世界のビデオに基づくトレーニングの例としては，DayDreamerのXArmタスクなどがあるが，これらは固定された対象物を想定している．本研究では，周期的な振る舞いをする実世界の物体に対して，周期の長さを変化させた場合のRSSMに基づくモデルの性能を評価する．タスクは，垂直方向に動く単純なアームを使用して，周期的に回転する円盤上で口を開けたおもちゃの魚を釣り上げる方法を学ぶことである．このモデルは，RSSMを用いてカメラで撮影された魚の位置を予測し，魚を捕らえた人に報酬を与えるように設計されている．</p>
       </section>
-
-      <!-- Experimental Setup -->
       <section id="setup">
         <h2>実験装置</h2>
-        <p>
-          タスクは，「回転する円盤上で口が開いている魚のおもちゃを上下方向で動く簡易なアームを用いて釣り上げる」ことである．
-        </p>
-        <p>
-          魚の実験装置では，市販されている「ぐる~んぐる~ん魚釣り」というおもちゃを使用している．その魚の口の中に「100円魚釣り」に付属していたマグネットを入れている．
-        </p>
-        <p>
-          魚の色については「緑色と黄色」の2色を使用している．これは，画像処理によって魚を検出しやすくするためにこの2色を採用している．
-        </p>
-        <p>
-          釣竿アームではサーボモータ1個をRaspberry Pi 4 Model Bで制御している．制御では，1自由度のアームが周期的に上下運動するようにしている．また，アーム自体は簡易的にダンボールで作成し，アーム部分にマグネットつきのオレンジ釣竿を取り付けている．そして，アーム先端の部分にオレンジ色の補色となる青色の目印を取り付けている．これは，魚の口の中に目印となる点を打って偏差を計測するためである．
-        </p>
-        <p>
-          カメラはiPhone7を使用して撮影を行った．撮影する画角に「魚」と「釣竿アーム」の両方が入るように調整した．また，背景には白いダンボールを使用して背景の影響で結果に影響が生じないように設定した．撮影時の照明も白色で撮影するように設定した．これらは魚と釣竿アーム以外の要因で結果に影響を及ぼさないようにする工夫である．
-        </p>
+        <div class="section-flex">
+          <div class="section-img">
+            <img src="images/background.png" alt="実験装置画像" />
+          </div>
+          <div class="section-text">
+            <p>タスクは，「回転する円盤上で口が開いている魚のおもちゃを上下方向で動く簡易なアームを用いて釣り上げる」ことである．</p>
+            <p>魚の実験装置では，市販されている「ぐる~んぐる~ん魚釣り」というおもちゃを使用している．その魚の口の中に「100円魚釣り」に付属していたマグネットを入れている．</p>
+            <p>魚の色については「緑色と黄色」の2色を使用している．これは，画像処理によって魚を検出しやすくするためにこの2色を採用している．</p>
+            <p>釣竿アームではサーボモータ1個をRaspberry Pi 4 Model Bで制御している．制御では，1自由度のアームが周期的に上下運動するようにしている．また，アーム自体は簡易的にダンボールで作成し，アーム部分にマグネットつきのオレンジ釣竿を取り付けている．そして，アーム先端の部分にオレンジ色の補色となる青色の目印を取り付けている．これは，魚の口の中に目印となる点を打って偏差を計測するためである．</p>
+            <p>カメラはiPhone7を使用して撮影を行った．撮影する画角に「魚」と「釣竿アーム」の両方が入るように調整した．また，背景には白いダンボールを使用して背景の影響で結果に影響を生じないように設定し、撮影時の照明も白色で設定した．</p>
+          </div>
+        </div>
       </section>
-
-      <!-- RSSM Implementation -->
       <section id="implementation">
         <h2>RSSMの実装</h2>
         <h3>Dreamerによる学習</h3>
-        <ol>
-          <li>観測 (ot)：128×128のRGB画像</li>
-          <li>行動 (at)：アームの上下運動 (1次元)</li>
-          <li>
-            報酬 (rt)：
-            <ul>
-              <li>① ランダム</li>
-              <li>② アームと魚の口の距離</li>
-              <li>③ 釣り上がった魚</li>
-              <li>④ (②と③)の組み合わせ</li>
-            </ul>
-          </li>
-        </ol>
-        <h3>学習の流れ</h3>
-        <ol>
-          <li>実験装置を用いて2,000ステップ程度のデータを収集，何度も反復させ(タスクの繰り返しに対応),データ長を増やす</li>
-          <li>300ステップ先までの状態を予測</li>
-        </ol>
+        <div class="section-flex">
+          <div class="section-img">
+            <img src="images/method.png" alt="Dreamer学習図" />
+          </div>
+          <div class="section-text">
+            <ol>
+              <li>観測 (ot)：128×128のRGB画像</li>
+              <li>行動 (at)：アームの上下運動 (1次元)</li>
+              <li>報酬 (rt)：
+                <ul>
+                  <li>① ランダム</li>
+                  <li>② アームと魚の口の距離</li>
+                  <li>③ 釣り上がった魚</li>
+                  <li>④ (②と③)の組み合わせ</li>
+                </ul>
+              </li>
+            </ol>
+            <h3>学習の流れ</h3>
+            <ol>
+              <li>実験装置を用いて2,000ステップ程度のデータを収集し反復、データ長を増やす</li>
+              <li>300ステップ先までの状態を予測</li>
+            </ol>
+          </div>
+        </div>
       </section>
-
-      <!-- Real-world Prediction -->
       <section id="prediction">
-        <h2>実世界の予測</h2>
+        <h3>実世界の予測</h3>
         <ol>
-          <li>実験装置で撮影して得られた動画を隠れ状態 (ht)に順次蓄積する</li>
-          <li>蓄積された隠れ状態を元にして次の状態を予測する</li>
-          <li>予測した状態を入力値(動画の1フレーム)として復元して可視化する</li>
-          <li>予測結果を隠れ状態に蓄積し,再び次の状態を予測する</li>
+          <li>実験装置で撮影して得られた動画を隠れ状態 (ht)に蓄積</li>
+          <li>蓄積された隠れ状態を元に次の状態を予測</li>
+          <li>予測状態をフレームとして復元・可視化</li>
+          <li>予測結果を隠れ状態に蓄積し、再度予測</li>
         </ol>
-        <p>状態予測を意図するため，報酬に行動がよらないようにランダムな報酬とした．</p>
+        <p>状態予測を意図するため報酬はランダムとした。</p>
       </section>
-
-      <!-- Reward-based Prediction -->
       <section id="reward_prediction">
-        <h2>報酬を設計したもとでの実世界の予測</h2>
+        <h3>報酬を設計したもとでの実世界の予測</h3>
         <ol>
-          <li>報酬1：アームの先端と魚の口のl2距離 (最短距離)を報酬にする</li>
-          <li>報酬2：魚が持ち上がり，池の上から画像中央部にいるときに報酬を与える</li>
-          <li>報酬3：報酬1と報酬2を組み合わせた報酬を与える</li>
+          <li>報酬1：アーム先端と魚の口のl2距離を報酬とする</li>
+          <li>報酬2：魚が中央部に移動した際に報酬を与える</li>
+          <li>報酬3：報酬1と報酬2を組み合わせて報酬を与える</li>
         </ol>
       </section>
-
-      <!-- Results -->
       <section id="results">
         <h2>実験結果</h2>
-        <h3>ランダム報酬</h3>
-        <div class="placeholder">ランダム報酬結果図</div>
-        <h3>距離による報酬</h3>
-        <div class="placeholder">距離報酬結果図</div>
-        <h3>釣り上げると報酬</h3>
-        <div class="placeholder">釣り上げ報酬結果図</div>
-        <h3>距離 & 釣り上げると報酬</h3>
-        <div class="placeholder">複合報酬結果図</div>
+        <div class="gifs-row">
+          <div class="gif-col"><img src="images/clean_clean.gif" alt="Clean"><br>Clean</div>
+          <div class="gif-col"><img src="images/clean_gaus.gif" alt="Gaussian"><br>Gaussian</div>
+          <div class="gif-col"><img src="images/clean_shot.gif" alt="Shot"><br>Shot</div>
+          <div class="gif-col"><img src="images/clean_imp.gif" alt="Impulse"><br>Impulse</div>
+          <div class="gif-col"><img src="images/clean_spe.gif" alt="Speckle"><br>Speckle</div>
+        </div>
       </section>
-
-      <!-- Conclusion -->
-      <section id="conclusion">
-        <h2>まとめ</h2>
-        <ol>
-          <li>世界の変化しうる部分および変化の様相を一定程度学習できた</li>
-          <li>❌ 魚の回転等は再現できなかった</li>
-          <li>✅ アームの動きは再現できた</li>
-          <li>報酬設計では，「距離&釣り上げると報酬」の際に定性評価における性能向上がみられた</li>
-        </ol>
-        <h3>改善点</h3>
-        <ul>
-          <li>多様なタスクでの実験</li>
-          <li>シミュレータと実環境での結果比較</li>
-        </ul>
-        <h3>今後の展望</h3>
-        <p>
-          画像の予測タスクにおいてどのような報酬設計によって魚が釣れやすくなりそうかが分かったため，今後は魚釣りタスクの学習において本研究で設計した報酬を適用することで魚がより釣れやすくなるかの検証を行いたい．
-        </p>
-      </section>
-
-      <!-- References -->
       <section id="references">
         <h2>参考文献</h2>
         <ol>
-          <li>[Hafner 19] Hafner, D., Lillicrap, T., Fischer, I., Villegas, R., Ha, D., Lee, H., and Davidson, J.: Learning latent dynamics for planning from pixels, ICML, Vol. 97, pp.2555–2565 (2019)</li>
-          <li>[Hafner 20] Hafner, D., Lillicrap, T., Ba, J., and Norouzi, M.: Dream to control: Learning behaviors by latent imagination, ICLR (2020)</li>
-          <li>[Hafner 21] Hafner, D., Lillicrap, T., Norouzi, M., and Ba, J.: Mastering atari with discrete world models, ICLR (2021)</li>
-          <li>[Wu 22] Wu, P., Escontrela, A., Hafner, D., Goldberg, K., and Abbeel, P.: DayDreamer: World models for physical robot learning, CoRL (2022)
+          <li><a href="https://arxiv.org/abs/1811.04551">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
+          <li><a href="https://arxiv.org/abs/1912.01603">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
+          <li><a href="https://arxiv.org/abs/2010.02193">Mastering atari with discrete world models, ICLR 2021</a></li>
+          <li><a href="https://arxiv.org/abs/2206.14176">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
+        </ol>
+      </section>
+    </main>
+    <footer>© 2022 World Model Group3. All rights reserved.</footer>
+    <script>
+      const langToggle = document.getElementById('langToggle');
+      let isEnglish = false;
+      // 各テキスト要素のidを付与
+      document.querySelector('header h1').id = 'headerTitle';
+      document.querySelector('.hero h2').id = 'heroTitle';
+      document.querySelector('.hero .authors').id = 'authors';
+      document.querySelector('#abstract h2').id = 'abstractTitle';
+      document.querySelector('#abstract p').id = 'abstractText';
+      document.querySelector('#setup h2').id = 'setupTitle';
+      document.querySelector('#setup .section-text').id = 'setupText';
+      document.querySelector('#implementation h2').id = 'implTitle';
+      document.querySelector('#implementation h3').id = 'implSubTitle';
+      document.querySelector('#implementation .section-text').id = 'implText';
+      document.querySelector('#prediction h3').id = 'predTitle';
+      document.querySelector('#prediction ol').id = 'predList';
+      document.querySelector('#prediction p').id = 'predText';
+      document.querySelector('#reward_prediction h3').id = 'rewardPredTitle';
+      document.querySelector('#reward_prediction ol').id = 'rewardPredList';
+      document.querySelector('#results h2').id = 'resultsTitle';
+      document.querySelector('#references h2').id = 'refTitle';
+      document.querySelector('#references ol').id = 'refList';
+
+      // 英語テキスト
+      const en = {
+        headerTitle: 'WorldModel2022',
+        heroTitle: 'Application of RSSM to Real World Image Prediction',
+        authors: 'Toshiro Kusui *1, Shinya Otani *2, Tsuyoshi Takano *3, Kento Fukuda *4, Junya Honda *5\n*1 The University of Tokyo, *2 Kobe University, *3 Chiba University,\n*4 The Open University of Japan, *5 National Institute of Technology, Kumamoto College',
+        abstractTitle: 'Abstract',
+        abstractText: 'Most previous RSSM studies have used sequential images from simulators as training data. As an example of training based on real-world videos, there is the XArm task in DayDreamer, but these assume fixed objects. In this study, we evaluate the performance of an RSSM-based model when the period length is changed for real-world objects with periodic behavior. The task is to learn how to catch a toy fish with an open mouth on a rotating disk using a simple arm that moves vertically. The model is designed to predict the position of the fish captured by the camera using RSSM and to reward the person who catches the fish.',
+        setupTitle: 'Experimental Setup',
+        setupText: `<p>The task is to catch a toy fish with an open mouth on a rotating disk using a simple arm that moves vertically.</p><p>For the fish experiment device, we used a commercially available "Gurun-Gurun Fish Catching" toy. A magnet from the "100 Yen Fish Catching" toy was placed in the fish's mouth.</p><p>Two colors of fish, green and yellow, were used. These colors were chosen to make it easier to detect the fish by image processing.</p><p>The fishing rod arm is controlled by a single servo motor with a Raspberry Pi 4 Model B. The arm has one degree of freedom and moves up and down periodically. The arm itself is made of cardboard, with an orange fishing rod with a magnet attached to the arm. A blue marker, which is the complementary color of orange, is attached to the tip of the arm. This is to mark a point in the fish's mouth and measure the deviation.</p><p>The camera used for shooting was an iPhone 7. The angle of view was adjusted so that both the fish and the fishing rod arm were in the frame. A white cardboard background was used to prevent the background from affecting the results, and white lighting was used during shooting. These measures were taken to prevent factors other than the fish and the fishing rod arm from affecting the results.</p>`,
+        implTitle: 'Implementation of RSSM',
+        implSubTitle: 'Learning with Dreamer',
+        implText: `<ol><li>Observation (ot): 128×128 RGB images</li><li>Action (at): Up and down movement of the arm (1D)</li><li>Reward (rt):<ul><li>① Random</li><li>② Distance between arm and fish mouth</li><li>③ Caught fish</li><li>④ Combination of (② and ③)</li></ul></li></ol><h3>Learning Flow</h3><ol><li>Collect about 2,000 steps of data using the experimental setup and repeat to increase data length</li><li>Predict the state up to 300 steps ahead</li></ol>`,
+        predTitle: 'Prediction in the Real World',
+        predList: `<ol><li>Accumulate videos obtained by shooting with the experimental setup as hidden states (ht)</li><li>Predict the next state based on the accumulated hidden states</li><li>Restore and visualize the predicted state as a frame</li><li>Accumulate the prediction results in the hidden state and predict again</li></ol>`,
+        predText: 'The reward was set to random to focus on state prediction.',
+        rewardPredTitle: 'Prediction in the Real World with Designed Rewards',
+        rewardPredList: `<ol><li>Reward 1: The l2 distance between the tip of the arm and the fish mouth is used as the reward</li><li>Reward 2: A reward is given when the fish moves to the center</li><li>Reward 3: Rewards are given by combining Reward 1 and Reward 2</li></ol>`,
+        resultsTitle: 'Experimental Results',
+        refTitle: 'References',
+        refList: `<ol>
+          <li><a href="https://arxiv.org/abs/1811.04551">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
+          <li><a href="https://arxiv.org/abs/1912.01603">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
+          <li><a href="https://arxiv.org/abs/2010.02193">Mastering atari with discrete world models, ICLR 2021</a></li>
+          <li><a href="https://arxiv.org/abs/2206.14176">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
+        </ol>`
+      };
+      // 日本語テキスト（初期値はHTMLに記載済みなので省略）
+      langToggle.addEventListener('click', () => {
+        isEnglish = !isEnglish;
+        if (isEnglish) {
+          langToggle.textContent = '日本語';
+          document.title = 'WorldModel2022';
+          for (const key in en) {
+            const el = document.getElementById(key);
+            if (el) {
+              if (key.endsWith('List') || key.endsWith('Text')) {
+                el.innerHTML = en[key];
+              } else {
+                el.textContent = en[key];
+              }
+            }
+          }
+        } else {
+          location.reload(); // シンプルにリロードで日本語に戻す
+        }
+      });
+    </script>
+  </body>
+</html>
