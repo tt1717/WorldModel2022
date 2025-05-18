@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" href="images/icon.png">
     <style>
       :root { --accent: #0b57d0; --dark: #1a1a1a; --light: #f7f7f7; }
       body { margin: 0; font-family: "M PLUS 1p", sans-serif; font-size: 1.15rem; line-height: 2; color: var(--dark); }
@@ -38,7 +39,7 @@
       .section-text { flex: 1 1 320px; min-width: 260px; }
       .gifs-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
       .gifs-row .gif-col { text-align: center; }
-      .gifs-row img { width: 300px; max-width: 100%; }
+      .gifs-row img { width: 280px; max-width: 100%; }
       footer { margin-top: 64px; padding: 24px 0; text-align: center; font-size: 0.8rem; color: #666; border-top: 1px solid #eee; }
       @media (max-width: 600px) { .hero h2 { font-size: 1.8rem; } header h1 { font-size: 0.9rem; } }
     </style>
@@ -176,7 +177,7 @@
       // 英語テキスト
       const en = {
         headerTitle: 'WorldModel2022',
-        heroTitle: 'Application of RSSM to Real World\nImage Prediction',
+        heroTitle: 'Application of RSSM to Real World<br>Image Prediction',
         authors: 'Toshiro Kusui *1, Shinya Otani *2, Tsuyoshi Takano *3, Kento Fukuda *4, Junya Honda *5\n*1 The University of Tokyo, *2 Kobe University, *3 Chiba University,\n*4 The Open University of Japan, *5 National Institute of Technology, Kumamoto College',
         abstractTitle: 'Abstract',
         abstractText: 'Most previous RSSM studies have used sequential images from simulators as training data. As an example of training based on real-world videos, there is the XArm task in DayDreamer, but these assume fixed objects. In this study, we evaluate the performance of an RSSM-based model when the period length is changed for real-world objects with periodic behavior. The task is to learn how to catch a toy fish with an open mouth on a rotating disk using a simple arm that moves vertically. The model is designed to predict the position of the fish captured by the camera using RSSM and to reward the person who catches the fish.',
