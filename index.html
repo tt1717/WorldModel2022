@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>世界モデル2022</title>
+    <title>RSSMの実世界画像予測への応用</title>
 
     <!-- Google Fonts -->
     <link
@@ -40,7 +40,7 @@
   <body>
     <header>
       <img src="images/icon.jpeg" alt="logo" />
-      <h1>RSSMの実世界画像予測への応用</h1>
+      <h1>世界モデル2022</h1>
     </header>
     <div class="hero">
       <h2>RSSMの実世界画像予測への応用</h2>
@@ -51,7 +51,7 @@
       </p>
       <div class="btn-group">
         <a href="materials/paper.pdf" class="btn" target="_blank">Paper</a>
-        <a href="materials/supplement.pdf" class="btn" target="_blank">Supplement</a>
+        <a href="https://github.com/username/repository" class="btn" target="_blank">Code</a>
         <a href="materials/slide.pdf" class="btn" target="_blank">Slide</a>
         <a href="materials/poster.pdf" class="btn" target="_blank">Poster</a>
         <button id="langToggle" class="btn">English</button>
@@ -66,7 +66,8 @@
         <h2>実験装置</h2>
         <div class="section-flex">
           <div class="section-img">
-            <img src="images/background.png" alt="実験装置画像" />
+            <img src="images/setup1.gif" alt="実験装置画像1" />
+            <img src="images/setup2.png" alt="実験装置画像2" />
           </div>
           <div class="section-text">
             <p>タスクは，「回転する円盤上で口が開いている魚のおもちゃを上下方向で動く簡易なアームを用いて釣り上げる」ことである．</p>
@@ -82,7 +83,7 @@
         <h3>Dreamerによる学習</h3>
         <div class="section-flex">
           <div class="section-img">
-            <img src="images/method.png" alt="Dreamer学習図" />
+            <img src="images/rssm.png" alt="Dreamer学習図" />
           </div>
           <div class="section-text">
             <ol>
@@ -126,11 +127,10 @@
       <section id="results">
         <h2>実験結果</h2>
         <div class="gifs-row">
-          <div class="gif-col"><img src="images/clean_clean.gif" alt="Clean"><br>Clean</div>
-          <div class="gif-col"><img src="images/clean_gaus.gif" alt="Gaussian"><br>Gaussian</div>
-          <div class="gif-col"><img src="images/clean_shot.gif" alt="Shot"><br>Shot</div>
-          <div class="gif-col"><img src="images/clean_imp.gif" alt="Impulse"><br>Impulse</div>
-          <div class="gif-col"><img src="images/clean_spe.gif" alt="Speckle"><br>Speckle</div>
+          <div class="gif-col"><img src="images/random.gif" alt="ランダム報酬"><br>ランダム報酬</div>
+          <div class="gif-col"><img src="images/distance.gif" alt="距離による報酬"><br>距離による報酬</div>
+          <div class="gif-col"><img src="images/fish.gif" alt="釣り上げると報酬"><br>釣り上げると報酬</div>
+          <div class="gif-col"><img src="images/distance_fish.gif" alt="距離 & 釣り上げると報酬"><br>距離 & 釣り上げると報酬</div>
         </div>
       </section>
       <section id="references">
@@ -197,7 +197,7 @@
       langToggle.addEventListener('click', () => {
         isEnglish = !isEnglish;
         if (isEnglish) {
-          langToggle.textContent = '日本語';
+          langToggle.textContent = 'Japanese';
           document.title = 'WorldModel2022';
           for (const key in en) {
             const el = document.getElementById(key);
