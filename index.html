@@ -213,7 +213,9 @@
           for (const key in en) {
             const el = document.getElementById(key);
             if (el) {
-              if (key.endsWith('List') || key.endsWith('Text')) {
+              if (key === "heroTitle") {
+                el.innerHTML = en[key]; // <br>をHTMLとして反映
+              } else if (key.endsWith('List') || key.endsWith('Text')) {
                 el.innerHTML = en[key];
               } else {
                 el.textContent = en[key];
