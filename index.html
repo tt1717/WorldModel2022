@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RSSMの実世界画像予測への応用</title>
+    <title>世界モデル2022</title>
 
     <!-- Google Fonts -->
     <link
@@ -28,7 +28,13 @@
       section h3 { margin: 32px 0 16px; font-size: 1.2rem; color: var(--dark); }
       .section-flex { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 32px; }
       .section-img { flex: 1 1 320px; min-width: 260px; text-align: center; }
-      .section-img img { max-width: 100%; height: auto; }
+      .section-img img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
       .section-text { flex: 1 1 320px; min-width: 260px; }
       .gifs-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
       .gifs-row .gif-col { text-align: center; }
@@ -39,7 +45,7 @@
   </head>
   <body>
     <header>
-      <img src="images/icon.jpeg" alt="logo" />
+      <img src="images/icon.png" alt="logo" />
       <h1>世界モデル2022</h1>
     </header>
     <div class="hero">
@@ -51,7 +57,7 @@
       </p>
       <div class="btn-group">
         <a href="materials/paper.pdf" class="btn" target="_blank">Paper</a>
-        <a href="https://github.com/username/repository" class="btn" target="_blank">Code</a>
+        <a href="https://github.com/tt1717/worldmodel2022_group03" class="btn" target="_blank">Code</a>
         <a href="materials/slide.pdf" class="btn" target="_blank">Slide</a>
         <a href="materials/poster.pdf" class="btn" target="_blank">Poster</a>
         <button id="langToggle" class="btn">English</button>
