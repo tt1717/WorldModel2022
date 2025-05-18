@@ -1,6 +1,6 @@
 # WorldModel2022 - Application of RSSM to Real World Image Prediction
 
-[English](README.md) | [日本語](README_JA.md) | <a href="https://tt1717.github.io/WorldModel2022/" target="_blank">Project Page</a>
+[English](README.md) | [日本語](README_JA.md) | [Project Page](https://tt1717.github.io/WorldModel2022/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
