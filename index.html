@@ -38,7 +38,7 @@
       .section-text { flex: 1 1 320px; min-width: 260px; }
       .gifs-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
       .gifs-row .gif-col { text-align: center; }
-      .gifs-row img { width: 180px; max-width: 100%; }
+      .gifs-row img { width: 300px; max-width: 100%; }
       footer { margin-top: 64px; padding: 24px 0; text-align: center; font-size: 0.8rem; color: #666; border-top: 1px solid #eee; }
       @media (max-width: 600px) { .hero h2 { font-size: 1.8rem; } header h1 { font-size: 0.9rem; } }
     </style>
@@ -133,19 +133,19 @@
       <section id="results">
         <h2>実験結果</h2>
         <div class="gifs-row">
-          <div class="gif-col"><img src="images/random.gif" alt="ランダム報酬"><br>ランダム報酬</div>
-          <div class="gif-col"><img src="images/distance.gif" alt="距離による報酬"><br>距離による報酬</div>
-          <div class="gif-col"><img src="images/fish.gif" alt="釣り上げると報酬"><br>釣り上げると報酬</div>
-          <div class="gif-col"><img src="images/distance_fish.gif" alt="距離 & 釣り上げると報酬"><br>距離 & 釣り上げると報酬</div>
+          <div class="gif-col"><img src="images/random.gif" alt="ランダム報酬"><br><span id="gif1label">ランダム報酬</span></div>
+          <div class="gif-col"><img src="images/distance.gif" alt="距離による報酬"><br><span id="gif2label">距離による報酬</span></div>
+          <div class="gif-col"><img src="images/fish.gif" alt="釣り上げると報酬"><br><span id="gif3label">釣り上げると報酬</span></div>
+          <div class="gif-col"><img src="images/distance_fish.gif" alt="距離 & 釣り上げると報酬"><br><span id="gif4label">距離 & 釣り上げると報酬</span></div>
         </div>
       </section>
       <section id="references">
         <h2>参考文献</h2>
         <ol>
-          <li><a href="https://arxiv.org/abs/1811.04551">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
-          <li><a href="https://arxiv.org/abs/1912.01603">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
-          <li><a href="https://arxiv.org/abs/2010.02193">Mastering atari with discrete world models, ICLR 2021</a></li>
-          <li><a href="https://arxiv.org/abs/2206.14176">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
+          <li><a href="https://arxiv.org/abs/1811.04551" target="_blank">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
+          <li><a href="https://arxiv.org/abs/1912.01603" target="_blank">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
+          <li><a href="https://arxiv.org/abs/2010.02193" target="_blank">Mastering atari with discrete world models, ICLR 2021</a></li>
+          <li><a href="https://arxiv.org/abs/2206.14176" target="_blank">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
         </ol>
       </section>
     </main>
@@ -176,7 +176,7 @@
       // 英語テキスト
       const en = {
         headerTitle: 'WorldModel2022',
-        heroTitle: 'Application of RSSM to Real World Image Prediction',
+        heroTitle: 'Application of RSSM to Real World\nImage Prediction',
         authors: 'Toshiro Kusui *1, Shinya Otani *2, Tsuyoshi Takano *3, Kento Fukuda *4, Junya Honda *5\n*1 The University of Tokyo, *2 Kobe University, *3 Chiba University,\n*4 The Open University of Japan, *5 National Institute of Technology, Kumamoto College',
         abstractTitle: 'Abstract',
         abstractText: 'Most previous RSSM studies have used sequential images from simulators as training data. As an example of training based on real-world videos, there is the XArm task in DayDreamer, but these assume fixed objects. In this study, we evaluate the performance of an RSSM-based model when the period length is changed for real-world objects with periodic behavior. The task is to learn how to catch a toy fish with an open mouth on a rotating disk using a simple arm that moves vertically. The model is designed to predict the position of the fish captured by the camera using RSSM and to reward the person who catches the fish.',
@@ -193,11 +193,15 @@
         resultsTitle: 'Experimental Results',
         refTitle: 'References',
         refList: `<ol>
-          <li><a href="https://arxiv.org/abs/1811.04551">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
-          <li><a href="https://arxiv.org/abs/1912.01603">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
-          <li><a href="https://arxiv.org/abs/2010.02193">Mastering atari with discrete world models, ICLR 2021</a></li>
-          <li><a href="https://arxiv.org/abs/2206.14176">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
-        </ol>`
+          <li><a href="https://arxiv.org/abs/1811.04551" target="_blank">Learning latent dynamics for planning from pixels, ICML 2019</a></li>
+          <li><a href="https://arxiv.org/abs/1912.01603" target="_blank">Dream to control: Learning behaviors by latent imagination, ICLR 2020</a></li>
+          <li><a href="https://arxiv.org/abs/2010.02193" target="_blank">Mastering atari with discrete world models, ICLR 2021</a></li>
+          <li><a href="https://arxiv.org/abs/2206.14176" target="_blank">DayDreamer: World models for physical robot learning, CoRL 2022</a></li>
+        </ol>`,
+        gif1label: 'Random Reward',
+        gif2label: 'Reward by Distance',
+        gif3label: 'Reward for fishing',
+        gif4label: 'Distance & Reward for fishing'
       };
       // 日本語テキスト（初期値はHTMLに記載済みなので省略）
       langToggle.addEventListener('click', () => {
@@ -214,6 +218,11 @@
                 el.textContent = en[key];
               }
             }
+          }
+          // gifラベルも英語に
+          for (let i = 1; i <= 4; i++) {
+            const el = document.getElementById(`gif${i}label`);
+            if (el) el.textContent = en[`gif${i}label`];
           }
         } else {
           location.reload(); // シンプルにリロードで日本語に戻す
