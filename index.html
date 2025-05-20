@@ -20,11 +20,9 @@
       .hero { max-width: 1200px; margin: 80px auto 48px; text-align: center; padding: 0 16px; }
       .hero h2 { margin: 0 0 24px; font-size: 3rem; font-weight: 600; color: var(--heading-color); line-height: 1.3; }
       .hero p.authors { margin: 0; font-size: 1rem; white-space: pre-line; }
-      .btn-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
-      .btn { display: inline-block; padding: 14px 32px; border-radius: 8px; background: var(--heading-color); color: #fff; font-weight: 600; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; text-align: center; border: 1px solid var(--heading-color); }
+      .btn-group {display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 24px;}
+      .btn { box-sizing: border-box; width: 160px; padding: 14px 32px; border-radius: 8px; background: var(--heading-color); color: #fff; font-weight: 600; font-size: 1.1rem; text-decoration: none; transition: all 0.3s ease; text-align: center; border: 1px solid var(--heading-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .btn:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-      #langToggle { width: 160px; }
-      .btn:not(#langToggle) { width: 90px; }
       main { max-width: 1200px; margin: 0 auto; padding: 0 16px 80px; }
       section { margin: 64px 0; }
       section h2 { margin: 0 0 24px; font-size: 2rem; color: var(--heading-color); border-bottom: 1px solid #ddd; padding-bottom: 4px; }
